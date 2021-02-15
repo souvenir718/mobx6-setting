@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { observer } from 'mobx-react';
+import store from './store';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = observer(() => {
+    const { count1Store, count2Store, countObject } = store;
+
+    return (
+        <div>
+            <h1> number : {count1Store.number}</h1>
+            <button onClick={() => count1Store.increase()}>plus</button>
+            <button onClick={() => count1Store.decrease()}>minus</button>
+
+            <h1>num : {countObject.num}</h1>
+            <button onClick={() => countObject.increase()}>increment</button>
+        </div>
+    );
+});
 
 export default App;
